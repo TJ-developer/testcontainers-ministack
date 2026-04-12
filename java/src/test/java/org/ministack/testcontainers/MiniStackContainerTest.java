@@ -26,6 +26,7 @@ import software.amazon.awssdk.services.ses.SesClient;
 import software.amazon.awssdk.services.sfn.SfnClient;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sqs.SqsClient;
+import software.amazon.awssdk.services.sqs.model.QueueAttributeName;
 import software.amazon.awssdk.services.ssm.SsmClient;
 import software.amazon.awssdk.services.ssm.model.ParameterType;
 import software.amazon.awssdk.services.sts.StsClient;
@@ -148,8 +149,10 @@ class MiniStackContainerTest {
         String name = "tc-sqsattr-" + uid();
         String url = sqs.createQueue(b -> b.queueName(name)).queueUrl();
         var attrs = sqs.getQueueAttributes(b -> b.queueUrl(url)
-                .attributeNamesWithStrings("QueueArn")).attributes();
-        assertTrue(attrs.get("QueueArn").contains(name));
+                .attributeNames(QueueAttributeName.QUEUE_ARN)).attributes();
+        String arn = attrs.get(QueueAttributeName.QUEUE_ARN);
+        assertNotNull(arn);
+        assertTrue(arn.contains(name));
     }
 
     // -----------------------------------------------------------------------

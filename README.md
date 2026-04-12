@@ -82,7 +82,7 @@ MiniStackContainer ministack = new MiniStackContainer("1.2.5");
 
 ## Other languages
 
-Coming when requested. Open an issue or upvote [ministackorg/ministack#250](https://github.com/ministackorg/ministack/issues/250).
+Coming when requested. Open an issue or upvote [ministackorg/ministack](https://github.com/ministackorg/ministack/issues/250).
 
 | Language | Status |
 |----------|--------|
