@@ -45,13 +45,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class MiniStackContainerTest {
 
     static MiniStackContainer ministack = new MiniStackContainer("latest");
-    static StaticCredentialsProvider creds = StaticCredentialsProvider.create(
-            AwsBasicCredentials.create("test", "test"));
-    static Region region = Region.US_EAST_1;
+    static StaticCredentialsProvider creds;
+    static Region region;
 
     @BeforeAll
     static void startContainer() {
         ministack.start();
+        creds = StaticCredentialsProvider
+          .create(AwsBasicCredentials.create(ministack.getAccessKey(), ministack.getSecretKey()));
+        region = Region.of(ministack.getRegion());
     }
 
     @AfterAll
@@ -73,6 +75,9 @@ class MiniStackContainerTest {
         assertTrue(ministack.isRunning());
         assertNotNull(ministack.getEndpoint());
         assertTrue(ministack.getPort() > 0);
+        assertNotNull(ministack.getAccessKey());
+        assertNotNull(ministack.getSecretKey());
+        assertNotNull(ministack.getRegion());
     }
 
     // -----------------------------------------------------------------------
