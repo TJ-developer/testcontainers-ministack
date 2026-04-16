@@ -22,8 +22,11 @@ import org.testcontainers.utility.DockerImageName;
 public class MiniStackContainer extends GenericContainer<MiniStackContainer> {
 
     private static final int PORT = 4566;
+    private static final String DEFAULT_AWS_ACCESS_KEY_ID = "test";
+    private static final String DEFAULT_AWS_SECRET_ACCESS_KEY = "test";
+    private static final String DEFAULT_REGION = "us-east-1";
     private static final DockerImageName DEFAULT_IMAGE =
-            DockerImageName.parse("ministackorg/ministack");
+        DockerImageName.parse("ministackorg/ministack");
 
     /**
      * Create a MiniStack container with the default image and "latest" tag.
@@ -71,6 +74,7 @@ public class MiniStackContainer extends GenericContainer<MiniStackContainer> {
     }
 
     /**
+<<<<<<< feat/flag_to_enable_real_infra
      * Activates real infrastructure mode.
      *
      * RDS spins up actual Postgres/MySQL containers, ElastiCache spins up real Redis, Athena runs real SQL via DuckDB, ECS runs real Docker containers.
@@ -78,5 +82,31 @@ public class MiniStackContainer extends GenericContainer<MiniStackContainer> {
      */
     public MiniStackContainer withRealInfrastructure() {
         return withFileSystemBind(DockerClientFactory.instance().getRemoteDockerUnixSocketPath(), "/var/run/docker.sock");
+=======
+     * Returns the AWS access key ID.
+     *
+     * @return the access key ID
+     */
+    public String getAccessKey() {
+        return this.getEnvMap().getOrDefault("AWS_ACCESS_KEY_ID", DEFAULT_AWS_ACCESS_KEY_ID);
+    }
+
+    /**
+     * Returns the AWS secret access key.
+     *
+     * @return the secret access key
+     */
+    public String getSecretKey() {
+        return this.getEnvMap().getOrDefault("AWS_SECRET_ACCESS_KEY", DEFAULT_AWS_SECRET_ACCESS_KEY);
+    }
+
+    /**
+     * Returns the AWS region.
+     *
+     * @return the region
+     */
+    public String getRegion() {
+        return this.getEnvMap().getOrDefault("MINISTACK_REGION", DEFAULT_REGION);
+>>>>>>> main
     }
 }
