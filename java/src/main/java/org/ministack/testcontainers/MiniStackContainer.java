@@ -1,5 +1,6 @@
 package org.ministack.testcontainers;
 
+import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
@@ -67,5 +68,15 @@ public class MiniStackContainer extends GenericContainer<MiniStackContainer> {
      */
     public int getPort() {
         return getMappedPort(PORT);
+    }
+
+    /**
+     * Activates real infrastructure mode.
+     *
+     * RDS spins up actual Postgres/MySQL containers, ElastiCache spins up real Redis, Athena runs real SQL via DuckDB, ECS runs real Docker containers.
+     * @return this container instance for chaining
+     */
+    public MiniStackContainer withRealInfrastructure() {
+        return withFileSystemBind(DockerClientFactory.instance().getRemoteDockerUnixSocketPath(), "/var/run/docker.sock");
     }
 }
