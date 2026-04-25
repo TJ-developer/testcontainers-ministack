@@ -25,7 +25,7 @@
 <dependency>
   <groupId>org.ministack</groupId>
   <artifactId>testcontainers-ministack</artifactId>
-  <version>0.1.3</version>
+  <version>0.1.5</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -33,7 +33,7 @@
 **Gradle**
 
 ```groovy
-testImplementation 'org.ministack:testcontainers-ministack:0.1.3'
+testImplementation 'org.ministack:testcontainers-ministack:0.1.5'
 ```
 
 ### Quick start
