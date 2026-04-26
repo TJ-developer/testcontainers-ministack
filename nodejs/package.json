@@ -1,0 +1,42 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "MiniStack module for Testcontainers",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint --fix \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" package.json",
+    "build": "tsc --project tsconfig.build.json"
+  },
+  "keywords": [
+    "ministack",
+    "aws",
+    "testing",
+    "docker",
+    "testcontainers"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@aws-sdk/client-rds": "^3.1037.0",
+    "@aws-sdk/client-s3": "^3.1037.0",
+    "@eslint/js": "^10.0.1",
+    "@types/pg": "^8.20.0",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
+    "p-retry": "^8.0.0",
+    "pg": "^8.20.0",
+    "prettier": "^3.8.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.0",
+    "vitest": "^4.1.5"
+  },
+  "dependencies": {
+    "testcontainers": "^11.14.0"
+  },
+  "engines": {
+    "node": ">= 20"
+  }
+}
